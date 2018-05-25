@@ -1,0 +1,67 @@
+*{
+	box-sizing: border-box;
+}
+.ocean {
+	width: 90%;
+	height: 40rem;
+	background-color: cornflowerblue;
+	border-radius: 0.75em;
+	margin: 2% auto;
+}
+
+.ocean .island {
+	width: 30%;
+	height: 20rem;
+	margin: 2%;
+	display: inline-block;
+}
+
+.island.yellow {
+	background: yellow;
+	float: left;
+}
+
+.island.violet {
+	background: violet;
+	float: left;
+	margin-top: 18rem;
+	margin-left: 0;
+}
+
+.island.pink {
+	background: pink;
+	float: right;
+}
+
+.animal {
+	width: 10%;
+	height: 10%;
+	border: 2px solid black;
+	padding: 10%;
+	margin: 5% 10% 5%;
+	display: inline-block;
+}
+
+.yellow {
+	background: yellow;
+}
+
+.violet {
+	background: violet;
+}
+
+.pink {
+	background: pink;
+}
+
+
+
+/***********************************/
+.drop-active {
+	border-color: #aaa;
+}
+
+.drop-target {
+	border-color: #fff;
+	border-style: solid;
+}

@@ -1,6 +1,7 @@
-*{
+* {
 	box-sizing: border-box;
 }
+
 .ocean {
 	width: 90%;
 	height: 40rem;
@@ -40,6 +41,9 @@
 	padding: 10%;
 	margin: 5% 10% 5%;
 	display: inline-block;
+	text-indent: -1.1em;
+	text-transform: capitalize;
+	line-height: 0;
 }
 
 .yellow {
@@ -54,13 +58,7 @@
 	background: pink;
 }
 
-
-
-/***********************************/
-.drop-active {
-	border-color: #aaa;
-}
-
+/****************in Js code*******************/
 .drop-target {
 	border-color: #fff;
 	border-style: solid;

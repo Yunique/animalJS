@@ -1,31 +1,32 @@
-/*******Main logic******/
-var Animal = {
-    constructor: function(color) {
+class Animal {
+    constructor(color) {
         this.color = color;
-        return this;
-    },
-    sayMyLocation: function(island) {
-        // В параметре island приниматеся аргумент с цветом острова
+    }
+    
+    sayMyLocation(island) {
         if (this.color === island) {
             alert('I`m on my place!');
         } else { alert('I`m not on my place!');}
-    },
-};
-
-var ufo, deer, bat, bat2, deer2, fish;
-ufo = Object.create(Animal).constructor('yellow');
-deer = Object.create(Animal).constructor('yellow');
-bat = Object.create(Animal).constructor('violet');
-bat2 = Object.create(Animal).constructor('yellow');
-deer2 = Object.create(Animal).constructor('pink');
-fish = Object.create(Animal).constructor('pink');
-
-fish.sayMyLocation = function(island) {
-    if (island === 'pink' || island === 'yellow' || island === 'violet') {
-        alert('I`m not on my place!');
-    } else {
-        alert('I`m on my place!');
     }
+}
+
+class Fish extends Animal {
+    sayMyLocation(island) {
+        if (island !== null) {
+            alert('I`m not on my place!');
+        } else {
+            alert('I`m on my place!');
+        }
+    }
+}
+
+let animals = {
+    ufo: new Animal('yellow'),
+    deer: new Animal('yellow'),
+    bat: new Animal('violet'),
+    bat2: new Animal('yellow'),
+    deer2: new Animal('pink'),
+    fish: new Fish('violet'),
 };
 
 /*******Dragging******/
@@ -38,7 +39,7 @@ interact('.animal').draggable({
 });
 
 function dragMoveListener(event) {
-    var target = event.target,
+    let target = event.target,
         x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
         y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
     
@@ -50,20 +51,36 @@ function dragMoveListener(event) {
     target.setAttribute('data-y', y);
 }
 
-/******Drag and drop*******/
+/******Island dropzone*******/
 interact('.island').dropzone({
     accept: '.animal',
     overlap: 'center',
     
     ondragenter: function(event) {
-        var dropzoneElement = event.target;
+        let dropzoneElement = event.target;
         dropzoneElement.classList.add('drop-target');
-        
     },
     ondragleave: function(event) {
         event.target.classList.remove('drop-target');
     },
     ondrop: function(event) {
-        console.log(event);
+        const islandColor = event.target.classList[1];
+        const id = event.relatedTarget.id;
+        animals[id].sayMyLocation(islandColor);
+    },
+});
+
+/***********Ocean dropzone ***********/
+interact('.ocean').dropzone({
+    accept: '.animal',
+    overlap: 'center',
+    
+    ondragleave: function(event) {
+        event.target.classList.remove('drop-target');
+    },
+    ondrop: function(event) {
+        const islandColor = null;
+        const id = event.relatedTarget.id;
+        animals[id].sayMyLocation(islandColor);
     },
 });
